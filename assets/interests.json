@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name" : "Food",
+    "interests": [
+      {
+        "id": 1,
+        "name": "Resturants",
+        "image": ""
+      },
+      {
+        "id": 2,
+        "name": "Fast Food",
+        "image": ""
+      },
+      {
+        "id": 3,
+        "name": "Sushi",
+        "image": ""
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name" : "Fashion",
+    "interests": [
+      {
+        "id": 4,
+        "name": "Male Fashion",
+        "image": ""
+      },
+      {
+        "id": 5,
+        "name": "Female Fashion",
+        "image": ""
+      },
+      {
+        "id": 6,
+        "name": "Underwares",
+        "image": ""
+      }
+    ]
+  }
+]
