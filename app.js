@@ -4,12 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
 var index = require('./routes/index');
 
 var cors = require('cors');
 var app = express();
-
+mongoose.connect('localhost:27017/Thor');
 //for cross origin requests
 app.use(cors());
 
@@ -27,11 +27,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 
-var customers = require('./routes/customers');
-app.use('/customers', customers);
+var customerRoutes = require('./routes/customer');
+app.use('/customer', customerRoutes);
 
-var interests = require('./routes/interests');
-app.use('/interests', interests);
+var interestRoutes = require('./routes/interest');
+app.use('/interest', interestRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
