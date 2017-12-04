@@ -33,6 +33,9 @@ app.use('/customer', customerRoutes);
 var interestRoutes = require('./routes/interest');
 app.use('/interest', interestRoutes);
 
+var userRoutes = require('./routes/user');
+app.use('/user', userRoutes);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
