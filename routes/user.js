@@ -55,5 +55,19 @@ router.post('/login', function (req, res, next) {
     });
 });
 
+router.put('/changeUserInterests', function(req, res, next) {
+
+    //var decoded= jwt.decode(req.query.token);
+
+    User.findById(id, function(err, user){
+        if (err) {
+            return res.status(500).json({
+                title: 'An error Occured',
+                error: err
+            });
+        }
+
+    });
+});
 
 module.exports = router;
