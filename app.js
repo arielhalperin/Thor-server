@@ -27,14 +27,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 
+var userRoutes = require('./routes/user');
+app.use('/user', userRoutes);
+
 var customerRoutes = require('./routes/customer');
 app.use('/customer', customerRoutes);
 
 var interestRoutes = require('./routes/interest');
 app.use('/interest', interestRoutes);
 
-var userRoutes = require('./routes/user');
-app.use('/user', userRoutes);
+var interestsCategoryRoutes = require('./routes/interests-category');
+app.use('/interests-category', interestsCategoryRoutes);
+
+var influencerRoutes = require('./routes/influencer');
+app.use('/influencer', influencerRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -50,23 +50,8 @@ router.post('/login', function (req, res, next) {
         res.status(200).json({
             message: 'Successfully logged in',
             token: token,
-            userId: user._id
+            user: user
         });
-    });
-});
-
-router.put('/changeUserInterests', function(req, res, next) {
-
-    //var decoded= jwt.decode(req.query.token);
-
-    User.findById(id, function(err, user){
-        if (err) {
-            return res.status(500).json({
-                title: 'An error Occured',
-                error: err
-            });
-        }
-
     });
 });
 
