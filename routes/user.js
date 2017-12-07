@@ -15,7 +15,7 @@ router.post('/', function(req, res, next) {
         avatar: req.body.avatar
     });
 
-    user.save(function(err, result) {
+    user.save(function(err, user) {
         if (err) {
             return res.status(500).json({
                 title: 'An error Occured',
@@ -23,9 +23,11 @@ router.post('/', function(req, res, next) {
             });
         }
 
+        var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
         res.status(201).json({
             message: "User created",
-            obj: result
+            token: token,
+            obj: user
         });
     });
 });

@@ -29,20 +29,23 @@ router.patch('/changeUserInterests', function(req, res, next) {
             });
         }
 
-        var promise = new Promise(function(resolve, reject) {
-            for( let interestId of interests){
-                Interest.findById(interestId, function(err, interest){
-                    if (err) {
-                        reject(err);
-                    }
+        var promiseArr = [];
+        user.interests = [];
+        for( let interestId of interests){
+            promiseArr.push(Interest.findById(interestId)
+                .then((data) => {return data})
+                .catch((error) => {return false})
+            )
+        }
 
-                    user.interests.push(interest);
-                })
-            }
-        });
-
-        promise.then(() => {
+        Promise.all(promiseArr)
+        .then((interests) => {
+            user.interests = interests;
             user.save();
+            res.status(200).json({
+                message: 'Saved successfully',
+                user: user
+            });
         }).catch((error)=>{
             return res.status(500).json({
                 title: 'An error Occured',

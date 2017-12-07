@@ -1,12 +1,40 @@
 var express = require('express');
 var router = express.Router();
-var InterestsCategory = require('../models/interests-category');
+var InterestsCategories = require('../models/interests-category');
 var Interest = require('../models/interest');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    // InterestsCategory.find()
-    //     .exec(function(err, interests){
+    InterestsCategories.find().populate("interests")
+        .exec(function(err, categories){
+            if(err){
+                return res.status(500).json({
+                    title: 'An error Occured',
+                    error: err
+                });
+            }
+
+            res.status(200).json({
+                message: "Success",
+                obj: categories
+            });
+        });
+
+
+    //The same query with lookup
+
+    // InterestsCategories.aggregate([
+    //     {
+    //         $lookup:
+    //             {
+    //                 from: "interests",
+    //                 localField: "interests",
+    //                 foreignField: "_id",
+    //                 as: "interests"
+    //             }
+    //     }
+    // ])
+    //     .exec(function(err, categories){
     //         if(err){
     //             return res.status(500).json({
     //                 title: 'An error Occured',
@@ -16,10 +44,10 @@ router.get('/', function(req, res, next) {
     //
     //         res.status(200).json({
     //             message: "Success",
-    //             obj: interests
+    //             obj: categories
     //         });
     //     });
-
+    //
     // var categories = [
     //     {
     //         "name": "Food",
