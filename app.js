@@ -39,6 +39,9 @@ app.use('/interest', interestRoutes);
 var interestsCategoryRoutes = require('./routes/interests-category');
 app.use('/interests-category', interestsCategoryRoutes);
 
+var contactUsRoutes = require('./routes/contact-us');
+app.use('/contact-us', contactUsRoutes);
+
 var influencerRoutes = require('./routes/influencer');
 app.use('/influencer', influencerRoutes);
 
